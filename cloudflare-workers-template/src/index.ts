@@ -22,4 +22,16 @@ app.get('/posts/:id', (c) => {
   return c.text(`You want to see ${page} of ${id}`)
 })
 
+app.get('/error', (c) => {
+  throw new Error('test error')
+})
+
+app.notFound((c) => {
+  return c.text('Custom 404 Message', 404)
+})
+
+app.onError((err, c) => {
+  return c.text('Custom Error Message', 500)
+})
+
 export default app
